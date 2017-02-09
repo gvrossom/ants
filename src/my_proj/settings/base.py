@@ -33,9 +33,11 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',
+                'django.template.context_processors.request',
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                #'waliki.context_processors.settings',
             ],
         },
     },
@@ -77,6 +79,7 @@ INSTALLED_APPS = (
 
     'profiles',
     'accounts',
+    'waliki',
 
 )
 
@@ -118,7 +121,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
-
+STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 ALLOWED_HOSTS = []
