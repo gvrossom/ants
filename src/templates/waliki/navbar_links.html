@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if navbar_links %}
+{# if navbar_links #}
 <ul class="nav navbar-nav waliki-nav">
     <li><a id="btn-waliki_new" href="{% url 'waliki_new' %}">{% trans "New page" %}</a></li>
     {% for url_name, link_text in navbar_links  %}
@@ -8,4 +8,4 @@
     <li class="divider-vertical"></li>
     <li></li>
 </ul>
-{% endif %}
+{# endif #}
