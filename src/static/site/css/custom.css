@@ -1,0 +1,178 @@
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+
+html, body{
+    height:100%;		/* For full height images */
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+.alert {
+    margin-top: 55px;
+    margin-bottom: 0;
+}
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #333;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    color: #333;
+    background-color: transparent;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+
+.btn {
+	/*padding: 9px 12px 7px;
+    border-width: 1px 1px 1px 1px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: none;
+    -webkit-box-shadow: 0px 0px 0px #ddd;
+    -moz-box-shadow: 0px 0px 0px #ddd;
+    box-shadow: 0px 0px 0px #ddd;*/
+}
+
+.btn:hover {
+	/*padding: 9px 12px 7px;
+    border-width: 1px 2px 2px 2px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: none;
+    -webkit-box-shadow: 0px 0px 0px #ddd;
+    -moz-box-shadow: 0px 0px 0px #ddd;
+    box-shadow: 0px 0px 0px #ddd;*/
+}
+
+.btn-success {
+    color: #ffffff;
+    background-color: #28b62c;
+    border-color: #23a127;
+}
+
+.btn-success-inverse {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #23a127;
+}
+
+.btn-success-inverse:hover {
+    color: #ffffff;
+	background-color: #23a12780;
+    border-color: #23a127;
+}
+.btn-success-inverse:focus {
+    color: #ffffff;
+	background-color: #23a12780;
+    border-color: #23a127;
+}
+
+
+
+/* Home page styling */
+.corporate-jumbo {
+    background-image: url("http://img04.deviantart.net/dd7c/i/2015/010/0/3/chalkboard_texture_mc2015_by_mattiamc-d8dbnac.jpg");
+    background-repeat: no-repeat;
+    background-position: 80% center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #f5f5f5;
+    padding: 10em 0;
+    margin-bottom: 0;
+    height: 100%;
+    /*background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+      url("/static/site/img/banner.jpg");*/
+}
+
+.corporate-jumbo .well {
+	border-color: rgba(255, 255, 255, .1);
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.corporate-jumbo p, .corporate-jumbo h1 {
+    color: #eee;
+    text-shadow: 0px 1px 1px black;
+}
+
+.corporate-jumbo p {
+    font-weight: 500;
+}
+
+/*.corporate-jumbo > .container {
+    display: block;
+    position: absolute;
+    bottom: 2em;
+    left: 15px;
+}*/
+
+.footer a:hover {
+    text-decoration: none;
+}
+
+
+/* About page styling */
+#sec1 {
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJklEQVQIW2NkAIILFy78NzAwYATRjCABZEGwAEwFiA1WBlIOUwkA72gTdDIYVO4AAAAASUVORK5CYII=) repeat;
+}
+
+
+/* Profile page styling */
+
+#map-outer {
+    height: 440px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color:#FFF
+}
+
+#map-container {
+    height: 400px
+}
+
+/* Authentication forms */
+.form-box form,
+.form-box .form-message {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-box form .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-box form .checkbox {
+  font-weight: normal;
+}
+
+.form-box form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-box form .form-control:focus {
+  z-index: 2;
+}
