@@ -2,6 +2,9 @@
 #    DJANGO_SETTINGS_MODULE=my_proj.settings.production
 from .base import *             # NOQA
 import logging.config
+import os
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # For security and performance reasons, DEBUG is turned off
 DEBUG = False
@@ -78,3 +81,17 @@ WALIKI_LOGGED_USER_PERMISSIONS = ('view_page',)
 WALIKI_AVAILABLE_MARKUPS = ['reStructuredText', 'Markdown']
 
 WALIKI_DEFAULT_MARKUP = WALIKI_AVAILABLE_MARKUPS[1]
+
+
+ALLOWED_HOSTS = [".pythonanywhere.com"]
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gautiervr$ants-db',
+        'USER': 'gautiervr',
+        'PASSWORD': 'melonysaumonqlitchi',
+        'HOST': 'gautiervr.mysql.pythonanywhere-services.com',
+    }
+}
