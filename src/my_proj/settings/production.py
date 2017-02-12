@@ -95,8 +95,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATATBASE_USER'),
-        'PASSWORD': os.environ.get('DATATBASE_PSSWD'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PSSWD'),
         'HOST': 'gautiervr.mysql.pythonanywhere-services.com',
     }
 }
