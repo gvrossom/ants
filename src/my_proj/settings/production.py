@@ -6,6 +6,7 @@ import os
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+
 # For security and performance reasons, DEBUG is turned off
 DEBUG = False
 TEMPLATE_DEBUG = False
@@ -25,10 +26,10 @@ TEMPLATES[0]['OPTIONS'].update({"loaders": loaders})
 TEMPLATES[0].update({"APP_DIRS": False})
 
 # Define STATIC_ROOT for the collectstatic command
-STATIC_ROOT = join(BASE_DIR, '..', 'site', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'site', 'static')
 
 # Log everything to the logs directory at the top
-LOGFILE_ROOT = join(dirname(BASE_DIR), 'logs')
+LOGFILE_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'logs')
 
 # Reset logging
 LOGGING_CONFIG = None
@@ -48,7 +49,7 @@ LOGGING = {
         'proj_log_file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': join(LOGFILE_ROOT, 'project.log'),
+            'filename': os.path.join(LOGFILE_ROOT, 'project.log'),
             'formatter': 'verbose'
         },
         'console': {
@@ -86,12 +87,16 @@ WALIKI_DEFAULT_MARKUP = WALIKI_AVAILABLE_MARKUPS[1]
 ALLOWED_HOSTS = [".pythonanywhere.com"]
 
 
+#####################
+# pythonanywhere db #
+#####################
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gautiervr$ants-db',
-        'USER': 'gautiervr',
-        'PASSWORD': 'melonysaumonqlitchi',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATATBASE_USER'),
+        'PASSWORD': os.environ.get('DATATBASE_PSSWD'),
         'HOST': 'gautiervr.mysql.pythonanywhere-services.com',
     }
 }
