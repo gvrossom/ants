@@ -84,7 +84,7 @@ WALIKI_AVAILABLE_MARKUPS = ['reStructuredText', 'Markdown']
 WALIKI_DEFAULT_MARKUP = WALIKI_AVAILABLE_MARKUPS[1]
 
 
-ALLOWED_HOSTS = [".pythonanywhere.com"]
+ALLOWED_HOSTS = [".pythonanywhere.com", "www.ants.cool"]
 
 
 #####################
