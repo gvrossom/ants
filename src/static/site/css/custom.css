@@ -1,8 +1,11 @@
 @import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
 html, body{
-    height:100%;		/* For full height images */
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  height:100%;		/* For full height images */
+  font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #454444;
 }
 
 
@@ -17,6 +20,7 @@ html, body{
   margin-top: 40px;
   border-top: 1px solid #eee;
 }
+
 
 .navbar-default .navbar-nav > li > a {
     color: #777;
