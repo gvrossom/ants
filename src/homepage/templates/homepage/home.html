@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading">
-                        <h2>The only limit is our imagination :)</h2>
+                        <h2>{{ lab_title }}</h2>
                         <p class="text-muted">Check out the amazing things we do in our lab!</p>
                     </div>
                 </div>
@@ -158,12 +158,13 @@
                 </div>
                 <div class="col-sm-8 portfolio-item">
                     <div class="section-heading">
-                    <h3>From tiny robots<small> Where Art and Science meet each other.</small></h3>
+                    <h3>{{ lab_message }}</h3>
+                    <!-- <h3>From tiny robots<small> Where Art and Science meet each other.</small></h3>
                     <h4>Energy, electricity, electronics, motors, Hardware programming. </h4>
                     <p>This is just a simple keywor list.</p>
                     <h3>To smart robots <small>Mathematics through technology.</small></h3>
                     <h4>Electronics, Software programming. </h4>
-                    <p>This is just a simple keywor list.</p>
+                    <p>This is just a simple keywor list.</p> -->
                     </div>
                 </div>
               <!-- </div>
@@ -220,9 +221,10 @@
     <section id="invite" class="cta">
         <div class="cta-content">
             <div class="container">
-                <h2>Real life projects for schools.</h2>
-                <!-- <h3>We are taking the classe outside.</h3> -->
-                <h4>Understanding Nature and Science through Technology.</h4>
+                <h2>{{ school_title }}</h2>
+                <!-- <h2>Real life projects for schools.</h2> -->
+                <h4>{{ school_message }}</h4>
+                <!-- <h4>Understanding Nature and Science through Technology.</h4>-->
                 <a href="#contact" class="btn btn-danger-inverse btn-xl page-scroll">Contact us</a>
             </div>
         </div>
@@ -241,7 +243,8 @@
             </div> -->
             <div class="row">
                 <div class="col-lg-6 text-left">
-                    <h3>We are real life teachers and learners. <br><small>Tell us something</small></h3>
+                    <h3>{{ feedback_invite }}</h3>
+                    <!-- <h3>We are real life teachers and learners. <br><small>Tell us something</small></h3> -->
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form action="/feedback/" method="POST" id="contactForm">
@@ -287,9 +290,10 @@
                 </div>
                 <div class="col-lg-5 col-lg-offset-1 text-left">
                     <div id="map-container" class="col-sm-12"></div>
-                    <h2>Ants<small>.lab</small></h2> 
-                    <h4>Soon in Boitsfort, Boosvorde.
-                    <h4>1170 <strong>Brussels</strong></h4>
+                    <h2>Ants<small>.lab</small></h2>
+                    <h4>{{ address }}</h4>
+                    <!-- <h4>Soon in Boitsfort, Boosvorde.
+                    <h4>1170 <strong>Brussels</strong></h4> -->
 
                 </div>
             </div>

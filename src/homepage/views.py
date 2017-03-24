@@ -43,6 +43,12 @@ def home_page(request):
         'header': data.header,
         'header_message': data.header_message,
         'about': data.about,
+        'lab_title': data.lab_title,
+        'school_title': data.school_title,
+        'lab_message': data.lab_message,
+        'school_message': data.school_message,
+        'feedback_invite': data.feedback_invite,
+        'address': data.address,
         'form': form
     }
     return render(request, template, context)
