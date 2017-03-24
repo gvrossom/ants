@@ -1,0 +1,310 @@
+body{
+  font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+  color: #454444;
+}
+/**/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+.navbar-default {
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    color: #222222;
+    background-color: transparent;
+}
+
+.dropdown-menu {
+    background-color: #0004;
+}
+
+.dropdown-menu > li > a {
+    color: rgba(255,255,255,.7);
+}
+
+.dropdown-menu > li > a:hover {
+    color: white;
+    background-color: transparent;
+}
+
+
+#floating_alert {
+    position: fixed;
+    width:30%;
+    top: 65px;
+    left: 40px;
+    z-index: 5000;
+}
+
+
+
+/*#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+#inner-message {
+    margin: 0 auto;
+}*/
+
+
+
+
+/*header {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  overflow-y: hidden;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+header .header-content {
+  width: 100%;
+  text-align: center;
+  padding: 150px 50px;
+  position: relative;
+  background-color: #0006;
+}
+
+header .header-content .header-content-inner {
+    max-width: none;
+    margin: 10px 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header .header-content .header-content-inner h1 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 100px;
+  text-shadow: 2px 2px #0005;
+}
+
+header .header-content .header-content-inner p {
+  font-size: 30px;
+  text-shadow: 2px 2px #0005;
+}*/
+
+section.portfolio {
+  background-color: transparent;
+}
+
+#portfolio .portfolio-item {
+  margin: 0 0 15px;
+  right: 0;
+}
+#portfolio .portfolio-item .portfolio-link {
+  display: block;
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+#portfolio .portfolio-item .portfolio-link .caption {
+  background: rgba(24, 188, 156, 0.9);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+}
+#portfolio .portfolio-item .portfolio-link .caption:hover {
+  opacity: 1;
+}
+#portfolio .portfolio-item .portfolio-link .caption .caption-content {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  font-size: 20px;
+  text-align: center;
+  top: 50%;
+  margin-top: -12px;
+  color: white;
+}
+#portfolio .portfolio-item .portfolio-link .caption .caption-content i {
+  margin-top: -12px;
+}
+#portfolio .portfolio-item .portfolio-link .caption .caption-content h3,
+#portfolio .portfolio-item .portfolio-link .caption .caption-content h4 {
+  margin: 0;
+}
+#portfolio * {
+  z-index: 2;
+}
+@media (min-width: 767px) {
+  #portfolio .portfolio-item {
+    margin: 0 0 30px;
+  }
+}
+
+
+section.cta .cta-content h2 {
+    color: #fff;
+    max-width: 800px;
+    font-size: 60px;
+}
+
+section.cta .cta-content h3 {
+    color: #fff;
+    max-width: 600px;
+    font-size: 50px;
+}
+section.cta .cta-content h4 {
+    color: #fff;
+    max-width: 500px;
+    font-size: 35px;
+}
+
+.btn-success-outline {
+  color: #5cb85c;
+  background-color: transparent;
+  border-color: #5cb85c;
+  border: 1px solid;
+}
+
+.btn-success-inverse {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+}
+
+.btn-success-outline:hover,
+.btn-success-outline:focus,
+.btn-success-outline:active,
+.btn-success-inverse:hover,
+.btn-success-inverse:focus,
+.btn-success-inverse:active,
+.btn-success-inverse.active {
+  color: white;
+  background-color: #5cb85c;
+  border-color: #5cb85c;	
+}
+
+.btn-info-inverse {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+}
+.btn-info-inverse:hover,
+.btn-info-inverse:focus,
+.btn-info-inverse:active,
+.btn-info-inverse.active {
+  color: white;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+
+.btn-danger-inverse {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+}
+.btn-danger-inverse:hover,
+.btn-danger-inverse:focus,
+.btn-danger-inverse:active,
+.btn-danger-inverse.active {
+  color: white;
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+
+.floating-label-form-group {
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #eeeeee;
+}
+.floating-label-form-group input,
+.floating-label-form-group textarea {
+  z-index: 1;
+  position: relative;
+  padding-right: 0;
+  padding-left: 0;
+  border: none;
+  border-radius: 0;
+  font-size: 1.5em;
+  background: none;
+  box-shadow: none !important;
+  resize: none;
+}
+.floating-label-form-group label {
+  display: block;
+  z-index: 0;
+  position: relative;
+  top: 2em;
+  margin: 0;
+  font-size: 0.85em;
+  line-height: 1.764705882em;
+  vertical-align: middle;
+  vertical-align: baseline;
+  opacity: 0;
+  -webkit-transition: top 0.3s ease,opacity 0.3s ease;
+  -moz-transition: top 0.3s ease,opacity 0.3s ease;
+  -ms-transition: top 0.3s ease,opacity 0.3s ease;
+  transition: top 0.3s ease,opacity 0.3s ease;
+}
+.floating-label-form-group:not(:first-child) {
+  padding-left: 14px;
+  border-left: 1px solid #eeeeee;
+}
+.floating-label-form-group-with-value label {
+  top: 0;
+  opacity: 1;
+}
+.floating-label-form-group-with-focus label {
+  color: #18BC9C;
+}
+form .row:first-child .floating-label-form-group {
+  border-top: 1px solid #eeeeee;
+}
+
+/* Google Maps */
+
+#map-outer {
+    height: 440px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color:#FFF
+}
+
+#map-container {
+    height: 200px;
+    margin-bottom: 40px;
+}
+
+section.contact {
+    text-align: center;
+    padding: 50px 0;
+}
+
+/*footer {
+    background-color: transparent;
+     border-style: solid;
+    border-top-width: 1px;
+    border-color: #fdcc52 transparent transparent transparent;
+    padding: 25px 0;
+}
+
+footer, footer ul li a {
+    color: #222;
+}
+footer, section.contact {
+    text-align: right;
+}*/

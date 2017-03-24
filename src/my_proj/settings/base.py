@@ -62,8 +62,6 @@ if os.path.exists(env_file):
 # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = [".pythonanywhere.com"]
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -82,6 +80,8 @@ INSTALLED_APPS = (
     'profiles',
     'accounts',
     'waliki',
+
+    'homepage',
 
 )
 
@@ -139,7 +139,7 @@ MESSAGE_TAGS = {
 
 # Authentication Settings
 AUTH_USER_MODEL = 'authtools.User'
-LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
+LOGIN_REDIRECT_URL = reverse_lazy("home")
 LOGIN_URL = reverse_lazy("accounts:login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
@@ -162,3 +162,7 @@ WALIKI_DEFAULT_MARKUP = WALIKI_AVAILABLE_MARKUPS[1]
 
 
 ALLOWED_HOSTS = [".pythonanywhere.com", "www.ants.cool"]
+
+# Message framework
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

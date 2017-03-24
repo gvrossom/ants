@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib.auth import get_user_model
 from django.contrib import auth
 from django.contrib import messages
+#from django.contrib.messages.views import SuccessMessageMixin
 from authtools import views as authviews
 from braces import views as bracesviews
 from django.conf import settings
@@ -24,10 +25,17 @@ class LoginView(bracesviews.AnonymousRequiredMixin,
             ONE_MONTH = 30*24*60*60
             expiry = getattr(settings, "KEEP_LOGGED_DURATION", ONE_MONTH)
             self.request.session.set_expiry(expiry)
+        messages.success(self.request,
+                         "Successfully logged in, "
+                         "Welcome.")
         return redirect
 
 
 class LogoutView(authviews.LogoutView):
+    # messages.success(self.request,
+    #                      "Successfully logged out, "
+    #                      "Bye bye")
+    # success_message = "Successfully logged out. Bye bye"
     url = reverse_lazy('home')
 
 

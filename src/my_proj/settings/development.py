@@ -31,6 +31,8 @@ INTERNAL_IPS = [
     '0.0.0.1',
 ]
 
+ALLOWED_HOSTS = ["192.168.1.17"]
+
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'logs')
 

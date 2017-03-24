@@ -1,6 +1,7 @@
-@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+/*@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";*/
 
 html, body{
+  padding-top: 20px;
   height:100%;		/* For full height images */
   font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
   font-size: 14px;
@@ -10,8 +11,9 @@ html, body{
 
 
 .alert {
-    margin-top: 55px;
+    margin-top: 5px;
     margin-bottom: 0;
+    border-radius: 0;
 }
 
 .footer {

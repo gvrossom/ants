@@ -7,8 +7,7 @@ import accounts.urls
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.HomePage.as_view(), name='home'),
-    url(r'^about/$', views.AboutPage.as_view(), name='about'),
+    url(r'^', include('homepage.urls')),
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^docs/', include('waliki.urls')),
     url(r'^admin/', include(admin.site.urls)),
