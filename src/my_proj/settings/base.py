@@ -145,24 +145,6 @@ LOGIN_URL = reverse_lazy("accounts:login")
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
 
 
-##########
-# waliki #
-##########
-
-WALIKI_INDEX_SLUG = "root"
-
-
-WALIKI_ANONYMOUS_USER_PERMISSIONS = ()
-
-WALIKI_LOGGED_USER_PERMISSIONS = ('view_page',)
-
-WALIKI_AVAILABLE_MARKUPS = ['reStructuredText', 'Markdown']
-
-WALIKI_DEFAULT_MARKUP = WALIKI_AVAILABLE_MARKUPS[1]
-
-
-ALLOWED_HOSTS = [".pythonanywhere.com", "www.ants.cool"]
-
 # Message framework
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

@@ -5,12 +5,12 @@
 	{% if user.is_authenticated %}
 	 {% if user.is_staff %}
       <li><a id="btn-waliki_new" href="{% url 'waliki_new' %}">{% trans "New page" %}</a></li>
-      {% endif %}
     {% endif %}
-    {% for url_name, link_text in navbar_links  %}
-    <li><a href="{% url url_name %}">{{ link_text }}</a></li>
-    {% endfor %}
-    <li class="divider-vertical"></li>
-    <li></li>
+  {% endif %}
+  {% for url_name, link_text in navbar_links  %}
+  <li><a href="{% url url_name %}">{{ link_text }}</a></li>
+  {% endfor %}
+  <li class="divider-vertical"></li>
+  <li></li>
 </ul>
 {# endif #}
