@@ -172,6 +172,12 @@ section.cta .cta-content h4 {
     font-size: 35px;
 }
 
+.success:hover,
+.success:focus,
+.success:active {
+  color: #5cb85c;
+}
+
 .btn-success-outline {
   color: #5cb85c;
   background-color: transparent;
@@ -197,6 +203,12 @@ section.cta .cta-content h4 {
   border-color: #5cb85c;	
 }
 
+.info:hover,
+.info:focus,
+.info:active {
+  color: #5bc0de;
+}
+
 .btn-info-inverse {
   color: white;
   border-color: white;
@@ -209,6 +221,12 @@ section.cta .cta-content h4 {
   color: white;
   background-color: #5bc0de;
   border-color: #5bc0de;
+}
+
+.danger:hover,
+.danger:focus,
+.danger:active {
+  color: #d9534f;
 }
 
 .btn-danger-inverse {
@@ -294,12 +312,8 @@ section.contact {
     padding: 50px 0;
 }
 
-/*footer {
+footer {
     background-color: transparent;
-     border-style: solid;
-    border-top-width: 1px;
-    border-color: #fdcc52 transparent transparent transparent;
-    padding: 25px 0;
 }
 
 footer, footer ul li a {
@@ -307,4 +321,4 @@ footer, footer ul li a {
 }
 footer, section.contact {
     text-align: right;
-}*/
+}

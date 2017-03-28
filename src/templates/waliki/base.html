@@ -110,14 +110,25 @@
                 </div> -->
         </nav>
         {% endblock %}
+
+{% block messages %}
+      {% if messages %}
+      <div id="floating_alert">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} fade in" style="display:none;" data-alert="alert">  <!-- singular -->
+            <a class="close" data-dismiss="alert">×</a>
+            {{ message|safe }}      
+          </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endblock %}
+
+
+
+
+
         <div class="container">
-        {% block messages %}
-            <div class="row">
-                <div class="col-lg-offset-2 col-sm-8 col-md-8">
-                    {% include "_messages.html" %}
-                </div>
-            </div>
-        {% endblock messages %}
 
           {% block body %}
             <div class="row">
@@ -167,6 +178,14 @@
         </script>
         <script src="{% static 'js/bootstrap.min.js'%}"></script>
         <script src="{% static 'js/waliki_base.js'%}"></script>
+        <script type="text/javascript">
+          $(document).ready( function(){
+              $(".alert").animate({ 'height':'toggle','opacity':'toggle'});
+              window.setTimeout( function(){
+                  $(".alert").slideDown();
+              }, 2500);
+          });
+        </script>
 
         {% block extra_script %}{% endblock %}
         {% endblock %}

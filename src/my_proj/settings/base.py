@@ -80,6 +80,8 @@ INSTALLED_APPS = (
     'profiles',
     'accounts',
     'waliki',
+    'waliki.attachments',
+    'sendfile',
 
     'homepage',
 
@@ -148,3 +150,6 @@ THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
 # Message framework
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
+# waliki_attachments
+SENDFILE_BACKEND = 'sendfile.backends.simple'

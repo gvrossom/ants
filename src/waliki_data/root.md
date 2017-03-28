@@ -19,6 +19,8 @@ In order to link pages together, we need two things; the link to the page we wan
 a markup language. The markup will help the computer behind this website to recognize the link, and, 
 to render it as a button on the page.
 
+<img src="/docs/root/attachment/me.jpg" width="600">
+
 The first thing you'll need is a MarkUp language. [What is a markup language?]  
 Two markup languages are available on this website: [ReStructuredText](http://docutils.sourceforge.net/rst.html){:target="_blank"} 
 and [Markdown](https://en.wikipedia.org/wiki/Markdown){:target="_blank"}.

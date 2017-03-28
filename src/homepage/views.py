@@ -43,10 +43,10 @@ def home_page(request):
         'header': data.header,
         'header_message': data.header_message,
         'about': data.about,
-        'lab_title': data.lab_title,
-        'school_title': data.school_title,
-        'lab_message': data.lab_message,
-        'school_message': data.school_message,
+        # 'lab_title': data.lab_title,
+        # 'school_title': data.school_title,
+        # 'lab_message': data.lab_message,
+        # 'school_message': data.school_message,
         'feedback_invite': data.feedback_invite,
         'address': data.address,
         'form': form
@@ -59,8 +59,8 @@ def feedback(request):
     form = FeedbackForm(request.POST)
     request_ip = get_ip(request)
     feedbacks = Feedback.objects.filter(ip_address=request_ip)
-    if len(feedbacks) > 0: 
-        messages.add_message(request, messages.WARNING, "Seems like you already did that.")
+    if len(feedbacks) > 5: 
+        messages.add_message(request, messages.WARNING, "Seems like you like us a lot, unfortunately we have to limit you to make sure we can handle all requests.")
         return redirect('/')
     if form.is_valid():
         print 'the form is valid'

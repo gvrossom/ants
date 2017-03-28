@@ -22,9 +22,9 @@
 {% endblock %}
 
 {% block navbar-left %}
-<li><a class="page-scroll" href="#portfolio">Projects</a></li>
-<li><a class="page-scroll" href="#invite">Programs</a></li>
-<li><a class="page-scroll" href="#contact">Contact</a></li>
+<li><a class="page-scroll" href="/docs/projects"><span class="success">Projects</span></a></li>
+<li><a class="page-scroll" href="/docs/programs"><span class="info">Programs</span></a></li>
+<li><a class="page-scroll" href="#contact"><span class="danger">Contact</span></a></li>
   {% include "_navbar.html" with active_link="home" %}
 {% endblock %}
 
@@ -51,8 +51,10 @@
               <h1>{{ header  }}</h1>
               <h3>{{ about }}</h3>
               <hr>
-              <a href="#portfolio" class="btn btn-success-inverse btn-xl page-scroll">Parents &amp; Children</a>
-              <a href="#invite" class="btn btn-info-inverse btn-xl page-scroll fadeIn">Teachers &amp; Schools</a>
+              <!-- <a href="#portfolio" class="btn btn-success-inverse btn-xl page-scroll">Parents &amp; Children</a>
+              <a href="#invite" class="btn btn-info-inverse btn-xl page-scroll fadeIn">Teachers &amp; Schools</a> -->
+              <a href="/docs/projects" class="btn btn-success-inverse btn-xl page-scroll">Parents &amp; Children</a>
+              <a href="/docs/programs" class="btn btn-info-inverse btn-xl page-scroll fadeIn">Teachers &amp; Schools</a>
               <a href="#contact" class="btn btn-danger-inverse btn-xl page-scroll">Contact us</a>
             </div>
           </div>
@@ -121,7 +123,7 @@
         </div>
     </section> -->
 
-    <section id="portfolio" class="portfolio">
+    <!-- <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -132,7 +134,7 @@
                 </div>
             </div>
             <div class="row">
-                <!-- <div class="col-sm-4 portfolio-item">
+                <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -144,7 +146,7 @@
                         <img src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cabin.png" class="img-responsive" alt="Cabin">
                         <img src="http://diy-projects.weebly.com/uploads/2/5/4/0/25407647/2055977_orig.jpg" class="img-responsive" alt="Cabin">
                     </a>
-                </div> -->
+                </div>
                 <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
@@ -153,22 +155,22 @@
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <!-- <img src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cake.png" class="img-responsive" alt="Slice of cake"> -->
+                        <img src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/cake.png" class="img-responsive" alt="Slice of cake">
                         <img src="https://cdn.instructables.com/FG4/Y3BR/HOUG0BDX/FG4Y3BRHOUG0BDX.MEDIUM.jpg?width=614" class="img-responsive" alt="Slice of cake">
                     </a>
                 </div>
                 <div class="col-sm-8 portfolio-item">
                     <div class="section-heading">
                     <h3>{{ lab_message }}</h3>
-                    <!-- <h3>From tiny robots<small> Where Art and Science meet each other.</small></h3>
+                    <h3>From tiny robots<small> Where Art and Science meet each other.</small></h3>
                     <h4>Energy, electricity, electronics, motors, Hardware programming. </h4>
                     <p>This is just a simple keywor list.</p>
                     <h3>To smart robots <small>Mathematics through technology.</small></h3>
                     <h4>Electronics, Software programming. </h4>
-                    <p>This is just a simple keywor list.</p> -->
+                    <p>This is just a simple keywor list.</p>
                     </div>
                 </div>
-              <!-- </div>
+              </div>
               <div class="row">
                 <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
@@ -214,23 +216,23 @@
                         </div>
                         <img src="https://blackrockdigital.github.io/startbootstrap-freelancer/img/portfolio/submarine.png" class="img-responsive" alt="Submarine">
                     </a>
-                </div> -->
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section id="invite" class="cta">
+    <!-- <section id="invite" class="cta">
         <div class="cta-content">
             <div class="container">
                 <h2>{{ school_title }}</h2>
-                <!-- <h2>Real life projects for schools.</h2> -->
+                <h2>Real life projects for schools.</h2>
                 <h4>{{ school_message }}</h4>
-                <!-- <h4>Understanding Nature and Science through Technology.</h4>-->
+                <h4>Understanding Nature and Science through Technology.</h4>
                 <a href="#contact" class="btn btn-danger-inverse btn-xl page-scroll">Contact us</a>
             </div>
         </div>
         <div class="overlay"></div>
-    </section>
+    </section> -->
 
     
 
@@ -355,13 +357,13 @@
             <h6>&copy; 2017 Ants. All Rights Reserved.</6>
             <ul class="list-inline">
                 <li>
-                    <a href="#">Privacy</a>
+                    <a href="/docs/privacy"><span class="success">Privacy</span></a>
                 </li>
                 <li>
-                    <a href="#">Terms</a>
+                    <a href="/docs/terms"><span class="info">Terms</span></a>
                 </li>
                 <li>
-                    <a href="#">FAQ</a>
+                    <a href="/docs/faq"><span class="danger">FAQ</span></a>
                 </li>
             </ul>
         </div>
