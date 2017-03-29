@@ -37,6 +37,12 @@ def home_page(request):
     except:
         data = {'header': 'Ants', 'header_message': "Reinventing classes", "About": "Art, Nature, Technology, Science"}
 
+    if request.user.is_superuser:
+        feedbacks = Feedback.objects.filter(status="n")
+        messages.add_message(request, messages.INFO, 'New feedbacks: %d. To the <a href="/admin/" class="alert-link">Admin</a>.' % len(feedbacks))
+        for feedback in feedbacks:
+            messages.add_message(request, messages.SUCCESS, feedback.message)
+
     form = FeedbackForm(None)
     template = "homepage/home.html"
     context = {
