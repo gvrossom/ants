@@ -40,14 +40,6 @@ h6 {
 }
 
 
-#floating_alert {
-    position: fixed;
-    width:30%;
-    top: 65px;
-    left: 40px;
-    z-index: 5000;
-}
-
 
 
 /*#message {
@@ -101,76 +93,6 @@ header .header-content .header-content-inner p {
   text-shadow: 2px 2px #0005;
 }*/
 
-section.portfolio {
-  background-color: transparent;
-}
-
-#portfolio .portfolio-item {
-  margin: 0 0 15px;
-  right: 0;
-}
-#portfolio .portfolio-item .portfolio-link {
-  display: block;
-  position: relative;
-  max-width: 400px;
-  margin: 0 auto;
-}
-#portfolio .portfolio-item .portfolio-link .caption {
-  background: #5cb85c99;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: all ease 0.5s;
-  -webkit-transition: all ease 0.5s;
-  -moz-transition: all ease 0.5s;
-}
-#portfolio .portfolio-item .portfolio-link .caption:hover {
-  opacity: 1;
-}
-#portfolio .portfolio-item .portfolio-link .caption .caption-content {
-  position: absolute;
-  width: 100%;
-  height: 20px;
-  font-size: 20px;
-  text-align: center;
-  top: 50%;
-  margin-top: -12px;
-  color: white;
-}
-#portfolio .portfolio-item .portfolio-link .caption .caption-content i {
-  margin-top: -12px;
-}
-#portfolio .portfolio-item .portfolio-link .caption .caption-content h3,
-#portfolio .portfolio-item .portfolio-link .caption .caption-content h4 {
-  margin: 0;
-}
-#portfolio * {
-  z-index: 2;
-}
-@media (min-width: 767px) {
-  #portfolio .portfolio-item {
-    margin: 0 0 30px;
-  }
-}
-
-
-section.cta .cta-content h2 {
-    color: #fff;
-    max-width: 800px;
-    font-size: 60px;
-}
-
-section.cta .cta-content h3 {
-    color: #fff;
-    max-width: 600px;
-    font-size: 50px;
-}
-section.cta .cta-content h4 {
-    color: #fff;
-    max-width: 500px;
-    font-size: 35px;
-}
 
 .success:hover,
 .success:focus,
@@ -291,34 +213,4 @@ section.cta .cta-content h4 {
 }
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eeeeee;
-}
-
-/* Google Maps */
-
-#map-outer {
-    height: 440px;
-    padding: 40px 20px;
-    margin-bottom: 20px;
-    background-color:#FFF
-}
-
-#map-container {
-    height: 200px;
-    margin-bottom: 40px;
-}
-
-section.contact {
-    text-align: center;
-    padding: 50px 0;
-}
-
-footer {
-    background-color: transparent;
-}
-
-footer, footer ul li a {
-    color: #222;
-}
-footer, section.contact {
-    text-align: right;
 }

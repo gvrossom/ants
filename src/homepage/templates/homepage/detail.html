@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load waliki_tags %}
+
+
+{% block extrahead %}
+<style type="text/css">
+	.navbar-default {
+	    background-color: #0807074d;
+	}
+
+	.affix {
+	    top:20px;
+	    position:fixed;
+	    padding-left: 15px;
+	    border-left: 1px solid #0807074d;
+	    margin-left: -1%;
+	}
+
+  #floating_alert {
+    position: fixed;
+    width:50%;
+    top: 5px;
+    right: 25%;
+    z-index: 5000;
+  }
+
+    .content-header {
+        display: table;
+        position: relative;
+        width: 100%;
+        height: 40%;
+        color: white;
+    }
+
+    .light {
+        color: white;
+    }
+
+    .list-group-item {
+        background-color: transparent;
+        border: 1px solid #ddd;
+    }
+
+
+</style>
+{% endblock extrahead %}
+
+{% block navbar %}
+ <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand">
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+		{% if not user.is_authenticated %}
+		<li><a href="{% url 'accounts:login' %}?next=/{{ slug }}" onclick=$("#menu-close").click();>login</a></li>
+		{% else %}
+		{% if user.is_staff %}
+		<li><a class="page-scroll" href="{% url 'admin:index' %}">Admin</a></li>
+		{% endif %}
+		<li><a href="{% url 'profiles:show_self' %}">me</a>
+		<li><a href="{% url 'waliki_home' %}">documentation</a></li>
+		<li><a href="{% url 'accounts:logout' %}?next=/{{ slug }}">logout</a></li>
+		{% endif %}
+    </ul>
+</nav>
+{% endblock navbar %}
+
+{% block splash %}
+<!-- Header -->
+<header id="top" class="content-header" style="background: url('http://aleksandroz.com/wp-content/themes/treeson_/media/img/bkg.jpg'); background-attachment: fixed;">
+
+
+<div class="container">
+  
+   
+	<h2>You are reading "{{ page.title }}"{% if next or previous %}, part of {{ parent.title }}{% endif %}.</h2>
+    <p>Parent level is {% if parent %}<a href="/{{ parent.slug }}/" class="btn btn-dark">{{ parent.title }}</a>
+    {% else %}<a href="{% url 'home' %}" class="btn btn-dark">Home</a>
+    {% endif %}, which has {{ data|length }} direct child{{ data|pluralize:"ren" }}, namely; 
+    {% for p in data %}{% if p.slug == page.slug %}<a href="/{{ p.slug }}" class="btn btn-light disabled">{{ p.title }}</a>{% else %}<a href="/{{ p.slug }}" class="btn btn-dark">{{ p.title }}</a>{% endif %}
+    {% endfor %}</p>
+    
+    {% if sub_data %}
+    <p>
+    This page has <a type="button" class="btn btn-dark" data-toggle="collapse"  href="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">{{ sub_data|length }} direct child{{ sub_data|pluralize:"ren" }}     <i class="fa fa-caret-down" aria-hidden="true"></i></a></p>
+	
+	
+
+	<div class="collapse" id="collapseHeader">
+      <div class="col-md-6">
+        <ul class="list-group">
+        {% for p in sub_data %}
+            <li class="list-group-item">
+            {% if request.user.is_authenticated %}
+            <a href="{{ p.get_absolute_url }}" class="btn btn-success badge">See in doc</a>
+            {% endif %}
+            <a href="/{{ p.slug }}" class="btn btn-dark btn-sm">{{ p.title }}</a>
+            {% if p.slug == page.slug %} (This one){% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+      </div>
+	</div>
+    {% endif %}
+</div>
+</header>
+{% endblock splash %}
+
+{% block container %}
+<section id="about" class="about" style="padding: 20px;">
+	<div class="container">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-sm-8 col-md-6 col-md-offset-1">
+            	<h1>{{ page.title }}</h1>
+                {% waliki_box slug %}
+        
+            </div>
+            <div class="col-sm-4 col-md-4 col-md-offset-1 hidden-md hidden-sm hidden-xs" style="border-left: 1px solid #0807074d;">
+              <div data-spy="affix" data-offset-top="250">
+                <h4>Table of content:</h4>
+                {{ toc|safe }}
+                {% if previous %}
+                <a href="/{{ previous }}" class="btn btn-dark">Previous</a>
+                {% endif %}
+                {% if next %}
+                <a href="/{{ next }}" class="btn btn-dark">Next</a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <div class="container">
+        <h6>&copy; {% now 'Y' %} Ants. All Rights Reserved.</6>
+        <ul class="list-inline">
+            <li>
+                <a href="/privacy/"><span class="success">Privacy</span></a>
+            </li>
+            <li>
+                <a href="/terms/"><span class="info">Terms</span></a>
+            </li>
+            <li>
+                <a href="/faq/"><span class="danger">FAQ</span></a>
+            </li>
+        </ul>
+    </div>
+<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+</footer>
+{% endblock %}

@@ -1,7 +1,9 @@
+
 This wiki serves as a virtual support and documentation for our [[courses]].  
 Whether it is robotics, programming, engineering or science, documentation is a must-write and -read.  
 Here is a [[demo]] page for demo users to see how the app works.
-<hr>
+
+<img src="/wiki/root/attachment/cam1.jpg" width="600">
 
 ## What is a wiki and why use one?
 
@@ -19,7 +21,7 @@ In order to link pages together, we need two things; the link to the page we wan
 a markup language. The markup will help the computer behind this website to recognize the link, and, 
 to render it as a button on the page.
 
-<img src="/docs/root/attachment/me.jpg" width="600">
+
 
 The first thing you'll need is a MarkUp language. [What is a markup language?]  
 Two markup languages are available on this website: [ReStructuredText](http://docutils.sourceforge.net/rst.html){:target="_blank"} 
@@ -45,7 +47,3 @@ This pages need content, help me write it!
 - [[to-do-website]]
 - [[to-do-course]]
 - [[to-do-organisation]]
-
-<hr>
-
-### ANTS is cool

@@ -47,6 +47,17 @@ class Feedback(models.Model):
         return self.email
 
 
+# class Content(models.Model):
+
+#     title = models.CharField(verbose_name=_('Title'), max_length=200, blank=True, null=True)
+#     slug = models.CharField(max_length=200, unique=True)
+
+#     class Meta:
+#         verbose_name = _('Feedback')
+#         verbose_name_plural = _('Feedbacks')
+
+#     def __str__(self):
+#         return self.email
 
 
 # class Message(models.Model):

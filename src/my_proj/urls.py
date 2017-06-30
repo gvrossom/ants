@@ -7,11 +7,11 @@ import accounts.urls
 from . import views
 
 urlpatterns = [
-    url(r'^', include('homepage.urls')),
     url(r'^users/', include(profiles.urls, namespace='profiles')),
-    url(r'^docs/', include('waliki.urls')),
+    url(r'^wiki/', include('waliki.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
+    url(r'^', include('homepage.urls')),
 ]
 
 # User-uploaded files like profile pics need to be served in development
