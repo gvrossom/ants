@@ -138,15 +138,12 @@ def detail_page(request, slug):
                 parent = x
 
         if part_of_many:
+            prev_slug = parent_slug + "/" + str(current_position-1)
+            next_slug = parent_slug + "/" + str(current_position+1)
             if current_position == 1:
                 prev_slug = None
-                next_slug = parent_slug + "/" + str(current_position+1)
-            elif current_position == len(data):
-                prev_slug = parent_slug + "/" + str(current_position-1)
+            if current_position == len(same_level_data):
                 next_slug = None
-            else:
-                prev_slug = parent_slug + "/" + str(current_position-1)
-                next_slug = parent_slug + "/" + str(current_position+1)  
         else:
             prev_slug = None
             next_slug = None 
