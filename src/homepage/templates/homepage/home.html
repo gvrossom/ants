@@ -35,7 +35,7 @@
 
 {% block splash %}
   <!-- Header -->
-  <header id="top" class="header" style="background: url('http://aleksandroz.com/wp-content/themes/treeson_/media/img/bkg.jpg'); background-attachment: fixed; color: white; text-shadow: 0px 0px 1px #FFFC;">
+  <header id="top" class="header">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-3">
@@ -62,12 +62,12 @@
             {% for page in pages %}
               {% if not "/" in page.slug %}
                 {% if "root" in page.slug %}
-                  <a href="{{ page.slug }}" class="btn btn-success-inverse btn-lg">{{ page.slug }}</a>
+                  <a href="{{ page.slug }}" class="btn btn-success-outline btn-lg">{{ page.slug }}</a>
                 {% else %}
                   {% if "ants" in page.slug %}
-                  <a href="{{ page.slug }}" class="btn btn-danger-inverse btn-lg">{{ page.slug }}</a>
+                  <a href="{{ page.slug }}" class="btn btn-danger-outline btn-lg">{{ page.slug }}</a>
                   {% else %}
-                  <a href="{{ page.slug }}" class="btn btn-info-inverse btn-lg">{{ page.slug }}</a>
+                  <a href="{{ page.slug }}" class="btn btn-info-outline btn-lg">{{ page.slug }}</a>
                   {% endif %}
                 {% endif %}
               {% endif %}

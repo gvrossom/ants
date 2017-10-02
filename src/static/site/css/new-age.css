@@ -101,10 +101,11 @@ header .header-content .header-content-inner p {
 }
 
 .btn-success-outline {
-  color: #5cb85c;
+  color: #454444;
   background-color: transparent;
-  border-color: #5cb85c;
   border: 1px solid;
+  border-color: #5cb85c;
+  border-radius: 0px;
 }
 
 .btn-success-inverse {
@@ -124,6 +125,60 @@ header .header-content .header-content-inner p {
   background-color: #5cb85c;
   border-color: #5cb85c;	
 }
+
+.btn-danger-outline {
+  color: #454444;
+  background-color: transparent;
+  border: 1px solid;
+  border-color: #d9534f;
+  border-radius: 0px;
+}
+
+.btn-danger-inverse {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+}
+
+.btn-danger-outline:hover,
+.btn-danger-outline:focus,
+.btn-danger-outline:active,
+.btn-danger-inverse:hover,
+.btn-danger-inverse:focus,
+.btn-danger-inverse:active,
+.btn-danger-inverse.active {
+  color: white;
+  background-color: #d9534f;
+  border-color: #d9534f;  
+}
+
+.btn-info-outline {
+  color: #454444;
+  background-color: transparent;
+  border: 1px solid;
+  border-color: #31b0d5;
+  border-radius: 0px;
+}
+
+.btn-info-inverse {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+}
+
+.btn-info-outline:hover,
+.btn-info-outline:focus,
+.btn-info-outline:active,
+.btn-info-inverse:hover,
+.btn-info-inverse:focus,
+.btn-info-inverse:active,
+.btn-info-inverse.active {
+  color: white;
+  background-color: #31b0d5;
+  border-color: #31b0d5;  
+}
+
+
 
 .info:hover,
 .info:focus,

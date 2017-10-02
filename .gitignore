@@ -60,3 +60,6 @@ Desktop.ini
 ./site/
 src/media/
 src/waliki_data/
+
+# bash scripts
+*.sh
