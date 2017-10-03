@@ -62,12 +62,16 @@
             {% for page in pages %}
               {% if not "/" in page.slug %}
                 {% if "root" in page.slug %}
-                  <a href="{{ page.slug }}" class="btn btn-success-outline btn-lg">{{ page.slug }}</a>
+                  <a href="{{ page.slug }}" class="btn btn-success btn-lg">{{ page.slug }}</a>
                 {% else %}
                   {% if "ants" in page.slug %}
-                  <a href="{{ page.slug }}" class="btn btn-danger-outline btn-lg">{{ page.slug }}</a>
+                  <a href="{{ page.slug }}" class="btn btn-danger btn-lg">{{ page.slug }}</a>
                   {% else %}
-                  <a href="{{ page.slug }}" class="btn btn-info-outline btn-lg">{{ page.slug }}</a>
+                    {% if "computer" in page.slug %}
+                    <a href="{{ page.slug }}" class="btn btn-warning btn-lg">{{ page.slug }}</a>
+                    {% else %}
+                    <a href="{{ page.slug }}" class="btn btn-info btn-lg">{{ page.slug }}</a>
+                    {% endif %}
                   {% endif %}
                 {% endif %}
               {% endif %}

@@ -1,4 +1,7 @@
+html,
 body{
+  width: 100%;
+  height: 100%;
   font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
   color: #454444;
 }
@@ -100,18 +103,20 @@ header .header-content .header-content-inner p {
   color: #5cb85c;
 }
 
+.btn-success {
+  color: white;
+  background-color: #5cb85c;
+  border: 1px solid;
+  border-color: #5cb85c;
+  border-radius: 0px;
+}
+
 .btn-success-outline {
   color: #454444;
   background-color: transparent;
   border: 1px solid;
   border-color: #5cb85c;
   border-radius: 0px;
-}
-
-.btn-success-inverse {
-  color: white;
-  border-color: white;
-  border: 1px solid;
 }
 
 .btn-success-outline:hover,
@@ -126,18 +131,20 @@ header .header-content .header-content-inner p {
   border-color: #5cb85c;	
 }
 
+.btn-danger {
+  color: white;
+  background-color: #d9534f;
+  border: 1px solid;
+  border-color: #d9534f;
+  border-radius: 0px;
+}
+
 .btn-danger-outline {
   color: #454444;
   background-color: transparent;
   border: 1px solid;
   border-color: #d9534f;
   border-radius: 0px;
-}
-
-.btn-danger-inverse {
-  color: white;
-  border-color: white;
-  border: 1px solid;
 }
 
 .btn-danger-outline:hover,
@@ -150,6 +157,42 @@ header .header-content .header-content-inner p {
   color: white;
   background-color: #d9534f;
   border-color: #d9534f;  
+}
+
+.btn-warning {
+  color: white;
+  background-color: #f0ad4e;
+  border: 1px solid;
+  border-color: #f0ad4e;
+  border-radius: 0px;
+}
+
+.btn-warning-outline {
+  color: white;
+  background-color: #f0ad4e;
+  border: 1px solid;
+  border-color: #f0ad4e;
+  border-radius: 0px;
+}
+
+.btn-warning-outline:hover,
+.btn-warning-outline:focus,
+.btn-warning-outline:active,
+.btn-warning-inverse:hover,
+.btn-warning-inverse:focus,
+.btn-warning-inverse:active,
+.btn-warning-inverse.active {
+  color: white;
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;  
+}
+
+.btn-info {
+  color: white;
+  background-color: #31b0d5;
+  border: 1px solid;
+  border-color: #31b0d5;
+  border-radius: 0px;
 }
 
 .btn-info-outline {

@@ -42,6 +42,14 @@
         border: 1px solid #ddd;
     }
 
+    #floating-nav {
+        position: fixed;
+        width:50%;
+        top: 20px;
+        left: 2px;
+        z-index: 5000;
+    }
+
 
 </style>
 {% endblock extrahead %}
@@ -71,70 +79,84 @@
 
 {% block splash %}
 <!-- Header -->
-<header id="top" class="content-header" style="border-bottom: 1px solid #454444;">
+<header id="top">
 
 
-<div class="container">
+<div class="container" class="content-header">
   
-   
-	<h2>You are reading "{{ page.title }}"{% if next or previous %}, part of {{ parent.title }}{% endif %}.</h2>
-    <p>Parent level is {% if parent %}<a href="/{{ parent.slug }}/" class="btn btn-dark">{{ parent.title }}</a>
-    {% else %}<a href="{% url 'home' %}" class="btn btn-dark">Home</a>
-    {% endif %}, which has {{ data|length }} direct child{{ data|pluralize:"ren" }}, namely; 
-    {% for p in data %}{% if p.slug == page.slug %}<a href="/{{ p.slug }}" class="btn btn-light disabled">{{ p.title }}</a>{% else %}<a href="/{{ p.slug }}" class="btn btn-dark">{{ p.title }}</a>{% endif %}
-    {% endfor %}</p>
+   You are reading ...
+	
     
-    {% if sub_data %}
-    <p>
-    This page has <a type="button" class="btn btn-dark" data-toggle="collapse"  href="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">{{ sub_data|length }} direct child{{ sub_data|pluralize:"ren" }}     <i class="fa fa-caret-down" aria-hidden="true"></i></a></p>
-	
-	
-
-	<div class="collapse" id="collapseHeader">
-      <div class="col-md-6">
-        <ul class="list-group">
-        {% for p in sub_data %}
-            <li class="list-group-item">
-            {% if request.user.is_authenticated %}
-            <a href="{{ p.get_absolute_url }}" class="btn btn-success badge">See in doc</a>
-            {% endif %}
-            <a href="/{{ p.slug }}" class="btn btn-dark btn-sm">{{ p.title }}</a>
-            {% if p.slug == page.slug %} (This one){% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-      </div>
-	</div>
-    {% endif %}
 </div>
 </header>
 {% endblock splash %}
 
 {% block container %}
 <section id="about" class="about" style="padding: 20px;">
+    <div class="container hidden-sm hidden-xs" id="floating-nav">
+        {% if parent %}<a href="/{{ parent.slug }}/" class="btn btn-light">{{ parent.title }}</a><br>
+        {% else %}<a href="{% url 'home' %}" class="btn btn-dark">Home</a><br>
+        {% endif %}
+        {% for p in data %}
+        <span style="margin-left: 10px;">
+            {% if p.slug == page.slug %}
+                {% if sub_data %}<a type="button" class="btn btn-dark" data-toggle="collapse"  href="#collapseHeader" aria-expanded="true" aria-controls="collapseHeader">{{ p.title }}     <i class="fa fa-caret-down" aria-hidden="true"></i></a><br>
+                    <div class="collapse" id="collapseHeader">
+                    {% for p in sub_data %}
+                        <span style="margin-left: 20px;">
+                        <a href="/{{ p.slug }}" class="btn btn-dark btn-sm">{{ p.title }}</a>
+                        {% if p.slug == page.slug %} (This one){% endif %}
+                        {% if request.user.is_authenticated %}
+                        <a href="{{ p.get_absolute_url }}" class="btn btn-success badge">See in doc</a>
+                        {% endif %}
+                        <br>
+                    </span>
+                    {% endfor %}
+                    </div>
+                {% else %}<a class="btn btn-dark disabled">{{ p.title }}</a><br>
+                {% endif %}
+            {% else %}<a href="/{{ p.slug }}" class="btn btn-light">{{ p.title }}</a><br>{% endif %}
+        </span>
+        {% endfor %}
+
+
+    </div>
 	<div class="container">
         <div class="row" style="margin-top: 50px">
-            <div class="col-sm-8 col-md-6 col-md-offset-1">
-            	<h1>{{ page.title }}</h1>
+            <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2 col-lg-6 col-lg-offset-0">
+                <h1>{{ page.title }}</h1>
                 {% waliki_box slug %}
-        
-            </div>
-            <div class="col-sm-4 col-md-4 col-md-offset-1 hidden-md hidden-sm hidden-xs" style="border-left: 1px solid #0807074d;">
-              <div data-spy="affix" data-offset-top="250">
-                <h4>Table of content:</h4>
-                {{ toc|safe }}
+                <br>
+                <br>
                 {% if previous %}
                 <a href="/{{ previous }}" class="btn btn-dark">Previous</a>
                 {% endif %}
                 {% if next %}
                 <a href="/{{ next }}" class="btn btn-dark">Next</a>
-                {% endif %}
+        {% endif %}
+        
+            </div>
+            <div class="col-sm-4 col-md-4 col-md-offset-2 hidden-md hidden-sm hidden-xs" style="border-left: 1px solid #0807074d;">
+              <div data-spy="affix" data-offset-top="250">
+                <h4>On this page:</h4>
+                {{ toc|safe }}
                 </div>
             </div>
         </div>
     </div>
+    <div class="container">
 </section>
 {% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.collapse').collapse();
+    });
+</script>
+
+{% endblock scripts %}
 
 {% block footer %}
 <footer>
