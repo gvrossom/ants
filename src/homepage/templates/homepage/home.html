@@ -81,9 +81,11 @@
             {% if request.user.is_authenticated %}
             <p>Private projects:</p>
             <div style="padding-bottom: 20px">
-            {% for project in projects %}
-                <a href="{{ project.slug }}" class="btn btn-success-inverse btn-lg">{{ project.ref_id }} - {{ project.title }}</a>
+              <ul>
+            {% for project in pirates %}
+                <li><a href="{{ project.slug }}">{{ project.slug }} - {{ project.title }}</a></li>
             {% endfor %}
+              </ul>
             {% endif %}
             </div>
             <form >

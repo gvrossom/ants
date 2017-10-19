@@ -36,8 +36,16 @@ def home_page(request):
         data = {'header': 'Ants', 'header_message': "Reinventing classes", "About": "Art, Nature, Technology, Science"}
 
     pattern = "^[a-z]+$"
+    private_patern = "^[-+]?\d+(\.\d+)?$"
     pages = Page.objects.all()
-    public = [page for page in pages if re.match(pattern, page.slug)]
+    public = []
+    private = []
+    for page in pages:
+        if re.match(pattern, page.slug):
+            public.append(page)
+        elif re.match(private_patern, page.slug):
+            private.append(page)
+
     users = User.objects.all()
 
     if request.user.is_authenticated:
@@ -59,6 +67,7 @@ def home_page(request):
         'header_message': data.header_message,
         'about': data.about,
         'pages': public,
+        'pirates': private,
         'users': users,
         'projects': projects,
         # 'lab_title': data.lab_title,
