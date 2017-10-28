@@ -3,12 +3,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 import profiles.urls
+import projects.urls
 import accounts.urls
 from . import views
 
 urlpatterns = [
     url(r'^users/', include(profiles.urls, namespace='profiles')),
-    url(r'^wiki/', include('waliki.urls')),
+    url(r'^p/', include(projects.urls, namespace='projects')),
+    url(r'^w/', include('waliki.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
     url(r'^', include('homepage.urls')),

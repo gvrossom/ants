@@ -1,0 +1,4 @@
+#!/bin/bash
+export DJANGO_SETTINGS_MODULE='my_proj.settings.development'
+export SECRET_KEY='c#iw5p#-f5ompu1yhu=6s#_=%p-4+gbjvt*yesz%8_o_-d2wii'
+source ../../env/bin/activate

@@ -6,6 +6,7 @@ import logging.config
 DEBUG = True
 TEMPLATES[0]['OPTIONS'].update({'debug': True})
 
+
 # Turn off debug while imported by Celery with a workaround
 # See http://stackoverflow.com/a/4806384
 if "celery" in sys.argv[0]:
@@ -31,7 +32,7 @@ INTERNAL_IPS = [
     '0.0.0.1',
 ]
 
-ALLOWED_HOSTS = ["192.168.1.17"]
+ALLOWED_HOSTS = ["localhost"]
 
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'logs')
@@ -109,10 +110,10 @@ WALIKI_BREADCRUMBS = False
 WALIKI_INDEX_SLUG = "root"
 
 
-WALIKI_ANONYMOUS_USER_PERMISSIONS = ('view_page',)
+WALIKI_ANONYMOUS_USER_PERMISSIONS = ()
 
 #WALIKI_LOGGED_USER_PERMISSIONS = ('view_page', 'add_page', 'change_page')
-WALIKI_LOGGED_USER_PERMISSIONS = ('view_page', 'add_page', 'change_page' )
+WALIKI_LOGGED_USER_PERMISSIONS = ('view_page', )
 
 WALIKI_AVAILABLE_MARKUPS = ['reStructuredText', 'Markdown']
 

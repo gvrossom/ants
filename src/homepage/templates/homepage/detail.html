@@ -3,177 +3,36 @@
 {% load waliki_tags %}
 
 
-{% block extrahead %}
-<style type="text/css">
-	.navbar-default {
-	    background-color: #0807074d;
-	}
-
-	.affix {
-	    top:20px;
-	    position:fixed;
-	    padding-left: 15px;
-	    border-left: 1px solid #0807074d;
-	    margin-left: -1%;
-	}
-
-  #floating_alert {
-    position: fixed;
-    width:50%;
-    top: 5px;
-    right: 25%;
-    z-index: 5000;
-  }
-
-    .content-header {
-        display: table;
-        position: relative;
-        width: 100%;
-        height: 30%;
-        /*color: white;*/
-    }
-
-    .light {
-        color: white;
-    }
-
-    .list-group-item {
-        background-color: transparent;
-        border: 1px solid #ddd;
-    }
-
-    #floating-nav {
-        position: fixed;
-        width:50%;
-        top: 20px;
-        left: 2px;
-        z-index: 5000;
-    }
-
-
-</style>
-{% endblock extrahead %}
-
-{% block navbar %}
- <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-<nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-        <li class="sidebar-brand">
-            <a href="{% url 'home' %}">Home</a>
-        </li>
-		{% if not user.is_authenticated %}
-		<li><a href="{% url 'accounts:login' %}?next=/{{ slug }}" onclick=$("#menu-close").click();>login</a></li>
-		{% else %}
-		{% if user.is_staff %}
-		<li><a class="page-scroll" href="{% url 'admin:index' %}">Admin</a></li>
-		{% endif %}
-		<li><a href="{% url 'profiles:show_self' %}">me</a>
-		<li><a href="{% url 'waliki_home' %}">documentation</a></li>
-		<li><a href="{% url 'accounts:logout' %}?next=/{{ slug }}">logout</a></li>
-		{% endif %}
-    </ul>
-</nav>
-{% endblock navbar %}
-
-{% block splash %}
+{% block header %}
 <!-- Header -->
-<header id="top">
+<div class="row">
+  <div class="col">
+    <h1 class="display-5">{{ page.title }}</h1>
+    <a class="btn btn-outline-success badge" href="/">Home</a>
+    / {{ page.slug }}
+  </div>
+</div>
+{% endblock header %}
 
+{% block content %}
+<div class="col-8">
+    {{ page.body|safe }}
+</div>
+<div class="col-4 hidden-sm hidden-xs">
+    <div data-spy="affix" data-offset-top="50">
 
-<div class="container" class="content-header">
-    <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2 col-lg-6 col-lg-offset-2">
-  
-                <h1>{{ page.title }}</h1>
-	
+        {% if request.user.is_authenticated %}
+        <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom: 20px;">
+          <a type="button" class="btn btn-outline-success" href="{{ page.get_absolute_url }}/edit">edit</a>
+          <a type="button" class="btn btn-outline-warning" href="{{ page.get_absolute_url }}">See in docs</a>
+          <a type="button" class="btn btn-outline-info" href="{{ page.get_absolute_url }}/history/">history</a>
+        </div>
+        {% endif %}
+        {% if toc %}
+        <h3 class="display-5">On this page:</h3>
+        {{ toc|safe }}
+        {% endif %}
     </div>
 </div>
-</header>
-{% endblock splash %}
-
-{% block container %}
-<section id="about" class="about" style="padding: 20px;">
-    <div class="container hidden-sm hidden-xs" id="floating-nav">
-        {% if parent %}<a href="/{{ parent.slug }}/" class="btn btn-light">{{ parent.title }}</a><br>
-        {% else %}<a href="{% url 'home' %}" class="btn btn-dark">Home</a><br>
-        {% endif %}
-        {% for p in data %}
-        <span style="margin-left: 10px;">
-            {% if p.slug == page.slug %}
-                {% if sub_data %}<a type="button" class="btn btn-dark" data-toggle="collapse"  href="#collapseHeader" aria-expanded="true" aria-controls="collapseHeader">{{ p.title }}     <i class="fa fa-caret-down" aria-hidden="true"></i></a><br>
-                    <div class="collapse" id="collapseHeader">
-                    {% for p in sub_data %}
-                        <span style="margin-left: 20px;">
-                        <a href="/{{ p.slug }}" class="btn btn-dark btn-sm">{{ p.title }}</a>
-                        {% if p.slug == page.slug %} (This one){% endif %}
-                        {% if request.user.is_authenticated %}
-                        <a href="{{ p.get_absolute_url }}" class="btn btn-success badge">See in doc</a>
-                        {% endif %}
-                        <br>
-                    </span>
-                    {% endfor %}
-                    </div>
-                {% else %}<a class="btn btn-dark disabled">{{ p.title }}</a><br>
-                {% endif %}
-            {% else %}<a href="/{{ p.slug }}" class="btn btn-light">{{ p.title }}</a><br>{% endif %}
-        </span>
-        {% endfor %}
-
-
-    </div>
-	<div class="container">
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2 col-lg-6 col-lg-offset-2">
-                {{ page.body|safe }}
-                <br>
-                <br>
-                {% if previous %}
-                <a href="/{{ previous }}" class="btn btn-dark">Previous</a>
-                {% endif %}
-                {% if next %}
-                <a href="/{{ next }}" class="btn btn-dark">Next</a>
-        {% endif %}
-        
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 col-lg-offset-0 col-md-offset-2 hidden-md hidden-sm hidden-xs" style="border-left: 1px solid #0807074d;">
-              <div data-spy="affix" data-offset-top="50">
-                <h4>On this page:</h4>
-                {{ toc|safe }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-</section>
 {% endblock %}
 
-{% block scripts %}
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.collapse').collapse();
-    });
-</script>
-
-{% endblock scripts %}
-
-{% block footer %}
-<footer>
-    <div class="container">
-        <h6>&copy; {% now 'Y' %} Ants. All Rights Reserved.</6>
-        <ul class="list-inline">
-            <li>
-                <a href="/privacy/"><span class="success">Privacy</span></a>
-            </li>
-            <li>
-                <a href="/terms/"><span class="info">Terms</span></a>
-            </li>
-            <li>
-                <a href="/faq/"><span class="danger">FAQ</span></a>
-            </li>
-        </ul>
-    </div>
-<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-</footer>
-{% endblock %}

@@ -81,11 +81,12 @@ INSTALLED_APPS = (
     'accounts',
     'waliki',
     'waliki.attachments',
+    'waliki.git',
     'waliki.togetherjs',
     'sendfile',
 
     'homepage',
-    'stats',
+    'projects',
 
 )
 

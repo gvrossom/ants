@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<!-- Header -->
+<div class="row">
+  <div class="col">
+    <h1 class="display-5"><a class="btn btn-outline-success badge" href="/">Home</a>
+    / {{ request.user.name }} / _new</h1>
+    
+  </div>
+</div>
+{% endblock header %} 
+
+
+{% block content %}
+<form id="new-form" method="post" class="form" action="{% url 'projects:new_project' %}">
+	{% csrf_token %}
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">New project</h4>
+      </div>
+      <div class="modal-body">
+      	{{ form }}
+      </div>
+      <div class="modal-footer">
+       <input class="btn btn-success" value="Create page" type="submit">
+      </div>
+</form>
+{% endblock content %}

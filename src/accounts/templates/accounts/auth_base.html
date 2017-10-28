@@ -1,28 +1,25 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 
 {% load crispy_forms_tags %}
 
 {% block navbar %}
-{% endblock %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
-{% block styles %}
-<link href="{% static 'site/css/custom.css' %}" rel="stylesheet">
-{% endblock styles %}
+      <div class="container">
+      <a class="navbar-brand" href="/">ANTS</a>
+  	</div>
+    </nav>
+    {% endblock %}
 
-{% block splash %}
-<div class="container form-box">
-  <div class="text-center">
-    <h2>{% block form_heading %}{% endblock %}</h2>
-  </div>
+{% block content %}
+  <div class="col-6"> 
+  
   {% block form %}
   {% endblock %}
-</div>
+  </div>
 
-{% endblock splash %}
+{% endblock content %}
 
-{% block container %}
-{% endblock container %}
-
-{% block footer %}
-{% endblock footer %}
+{% block header %}
+    <h2>{% block form_heading %}{% endblock %}</h2>
+{% endblock header %}
