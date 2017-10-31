@@ -14,15 +14,15 @@
 
 {% block content %}
 <div class="card">
-  <div class="card-body">
-    <h4 class="card-title">New project</h4>
     <form id="new-form" method="post" class="form" action="{% url 'projects:new_project' %}">
       {% csrf_token %}
+  <div class="card-body">
+    <h4 class="card-title">New project</h4>
       {{ form }}
-    </form>
   </div>
   <div class="card-footer text-right">
    <input class="btn btn-success" value="Create page" type="submit">
   </div>
+    </form>
 </div>
 {% endblock content %}

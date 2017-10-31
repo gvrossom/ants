@@ -264,8 +264,9 @@
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 
   
+        {% block script_base %}
 
-    {% block extra_script %}
-    {% endblock %}
+        {% block extra_script %}{% endblock %}
+        {% endblock %}
   </body>
 </html>
