@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>{% block title %}{% include "_brandname.html" %} :: {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,15 +16,32 @@
     <link href="http://getbootstrap.com/docs/4.0/examples/jumbotron/jumbotron.css" rel="stylesheet">
     <link href="http://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
 
-    {% block style_base %}
+    
+  
+    
+
     <style type="text/css">
+    html, body{
+      font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+    }
+
+    .btn {
+      border-radius: 1px;
+    }
+
+
       .jumbotron {
         background-color:white;
       }
-    </style>
-    {% endblock %}
 
-    <style type="text/css">
+      .public {
+        background-color:white;
+        padding: 0rem 2rem;
+        margin-top: -1px;
+      }
+
+
+
       #floating_alert {
         position: fixed;
         width:100%;
@@ -37,11 +54,20 @@
         margin-top: 0px;
         border-radius: 0px;
       }
+
+
     </style>
+
+    {% block extra_head %}
+    {% endblock %}
 
   </head>
 
   <body>
+
+  
+
+
     {% block navbar %}
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
@@ -118,77 +144,77 @@
     {% endblock %}
 
     {% block body %}
+   
     <main role="main">
-
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
           {% block header %}
             <!-- Row -->
-<div class="row">
-  <div class="col-3">  
-    {% if pages|length > 0 %}
-      {% for page in pages %}
-        {% if not "/" in page.slug %}
-          {% if "root" in page.slug %}
-            <a href="{{ page.slug }}" class="btn btn-success btn-sm">{{ page.slug }}</a>
-          {% else %}
-            {% if "ants" in page.slug %}
-            <a href="{{ page.slug }}" class="btn btn-danger btn-lg">{{ page.slug }}</a>
-            {% else %}
-              {% if "computer" in page.slug %}
-              <a href="{{ page.slug }}" class="btn btn-warning btn-lg">{{ page.slug }}</a>
-              {% else %}
-              <a href="{{ page.slug }}" class="btn btn-info">{{ page.slug }}</a>
+          <div class="row">
+            <div class="col-3">  
+              {% if pages|length > 0 %}
+                {% for page in pages %}
+                  {% if not "/" in page.slug %}
+                    {% if "root" in page.slug %}
+                      <a href="{{ page.slug }}" class="btn btn-success btn-sm">{{ page.slug }}</a>
+                    {% else %}
+                      {% if "ants" in page.slug %}
+                      <a href="{{ page.slug }}" class="btn btn-danger btn-lg">{{ page.slug }}</a>
+                      {% else %}
+                        {% if "computer" in page.slug %}
+                        <a href="{{ page.slug }}" class="btn btn-warning btn-lg">{{ page.slug }}</a>
+                        {% else %}
+                        <a href="{{ page.slug }}" class="btn btn-info">{{ page.slug }}</a>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
               {% endif %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  </div>
-  <div class="col-6">
-    <h1 class="display-5">Hi, {% if request.user.is_authenticated %}{{ request.user.name }}{% else %}anonymous user{% endif %}.</h1>
-    
-    
-    {% if request.user.is_authenticated %}
-      <span style="padding-bottom: 20px;font-size: large;">
-      <ul class="list-group">
-        <li class="list-group-item"><a href="{{ request.user.name }}">/{{ request.user.name }}</a></li>
-        {% for project in projects %}
-          {% if project.creator = request.user %}
-            <li class="list-group-item"><a href="w/{{ project.slug }}">/{{ project.slug }} - {{ project.creator.name }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      </span>
-     {% else %}
-      <span style="font-size: large;">
-      <p>There are currently {{ pages|length }} public, and {{ projects.count }} private page{{ projects|pluralize }}. <br>
-      Harvested by {{ users.count }} worker{{ users|pluralize }}.</p>
-      <p>If you don't know where to start, you can read about the project itself; keyword <span style='color:red;'>ants</span>. To understand how we work together, you can jump to the <span style='color:green;'>root</span>.</p>
+            </div>
+            <div class="col-6">
+              <h1 class="display-5">Hi, {% if request.user.is_authenticated %}{{ request.user.name }}{% else %}anonymous user{% endif %}.</h1>
+              
+              
+              {% if request.user.is_authenticated %}
+                <span style="padding-bottom: 20px;font-size: large;">
+                <ul class="list-group">
+                  <li class="list-group-item"><a href="{{ request.user.name }}">/{{ request.user.name }}</a></li>
+                  {% for project in projects %}
+                    {% if project.creator = request.user %}
+                      <li class="list-group-item"><a href="w/{{ project.slug }}">/{{ project.slug }} - {{ project.creator.name }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+                </span>
+               {% else %}
+                <span style="font-size: large;">
+                <p>There are currently {{ pages|length }} public, and {{ projects.count }} private page{{ projects|pluralize }}. <br>
+                Harvested by {{ users.count }} worker{{ users|pluralize }}.</p>
+                <p>If you don't know where to start, you can read about the project itself; keyword <span style='color:red;'>ants</span>. To understand how we work together, you can jump to the <span style='color:green;'>root</span>.</p>
 
-      <p>If you were invited to this platform and have received a key, you can enter that key directly into the hit box on the right.</p>
-      </span>
-      {% endif %}
-      {% if request.user.is_staff %}
-      <p>Projects:</p>
-      <span style="padding-bottom: 20px;font-size: large;">
-        <ul class="list-group">
-          {% for project in projects %}
-              <li class="list-group-item"><a href="w/{{ project.slug }}">{{ project.slug }} - {{ project.creator.name }}</a></li>
-          {% endfor %}
-        </ul>
-      </span>
-    {% endif %}
-  </div>
-  {% if request.user.is_authenticated %}
-  <div class="col-3">
-    <a href="/p/new" class="btn btn-outline-success">+ project</a>
-  </div>
-  {% endif %}
-</div>
-<!-- end row -->
+                <p>If you were invited to this platform and have received a key, you can enter that key directly into the hit box on the right.</p>
+                </span>
+                {% endif %}
+                {% if request.user.is_staff %}
+                <p>Projects:</p>
+                <span style="padding-bottom: 20px;font-size: large;">
+                  <ul class="list-group">
+                    {% for project in projects %}
+                        <li class="list-group-item"><a href="w/{{ project.slug }}">{{ project.slug }} - {{ project.creator.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </span>
+              {% endif %}
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="col-3">
+              <a href="/p/new" class="btn btn-outline-success">+ project</a>
+            </div>
+            {% endif %}
+          </div>
+          <!-- end row -->
           {% endblock %}
         </div>
       </div>
@@ -225,13 +251,19 @@
       </div>
     </footer>
 
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="http://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+  
 
     {% block extra_script %}
     {% endblock %}

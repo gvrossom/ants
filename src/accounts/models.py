@@ -1,3 +1,3 @@
 from django.db import models
 
-# Create your models here.
+# Check lib models here: https://github.com/fusionbox/django-authtools/blob/master/authtools/models.py

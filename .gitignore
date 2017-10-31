@@ -63,3 +63,7 @@ src/waliki_data/
 
 # bash scripts
 *.sh
+setup_environment
+.coverage
+htmlcov/
+staticfiles/

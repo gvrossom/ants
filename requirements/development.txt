@@ -28,3 +28,5 @@ six==1.10.0
 sqlparse==0.2.2
 waliki==0.7
 Werkzeug==0.11.15
+Factory==1.2
+factory-boy

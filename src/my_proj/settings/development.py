@@ -3,7 +3,7 @@ import sys
 import logging.config
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATES[0]['OPTIONS'].update({'debug': True})
 
 
@@ -119,3 +119,8 @@ WALIKI_AVAILABLE_MARKUPS = ['reStructuredText', 'Markdown']
 
 WALIKI_DEFAULT_MARKUP = WALIKI_AVAILABLE_MARKUPS[1]
 
+
+# SITE_ID = 1
+# ACCOUNT_USERNAME_REQUIRED = True
+# ACCOUNT_UNIQUE_EMAIL = False
+# ACCOUNT_AUTHENTICATION_METHOD = "name"

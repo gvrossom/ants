@@ -41,7 +41,7 @@ def home_page(request):
 
     # users = User.objects.all()
     if request.user.is_authenticated():
-        projects = Project.objects.filter(creator=request.user)
+        projects = Project.objects.filter(creator=request.user).order_by('-last_updated')
     else:
         projects = None
 

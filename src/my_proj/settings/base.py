@@ -104,14 +104,6 @@ ROOT_URLCONF = 'my_proj.urls'
 
 WSGI_APPLICATION = 'my_proj.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
-#DATABASES = {
-#    # Raises ImproperlyConfigured exception if DATABASE_URL not in
-#    # os.environ
-#    'default': env.db(),
-#}
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -131,10 +123,8 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-ALLOWED_HOSTS = []
-
 # Crispy Form Theme - Bootstrap 3
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # For Bootstrap 3, change error alert to 'danger'
 from django.contrib import messages

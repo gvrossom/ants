@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 import hashlib
+import datetime
 
 from django.conf import settings
 from django.db import models
@@ -19,12 +20,16 @@ class Project(Page):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL
         )
+    created = models.DateTimeField(auto_now=False, auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    
 
     def save(self, *args, **kwargs):
         self.slug = hashlib.md5(self.title).hexdigest()
         self.slug = self.creator.name + "/" + self.slug
         if not self.path:
-            self.path = self.slug + self.markup
+            self.path = self.slug + self.markup_.file_extensions[0]
         if not self.raw:
-            self.raw = "Hello %s,\n\nstart harvesting your seed here.\n\n" % (self.creator.name)
+            self.raw = "Author: %s\n\nCreated: %s\n\n" % (self.creator.name, datetime.datetime.now())
         super(Project, self).save(*args, **kwargs)

@@ -4,9 +4,26 @@
 
 {% block title %}{{ block.super }}Home{% endblock %}
 
-{% block extrahead %}
+{% block extra_head %}
+<style type="text/css">
 
-{% endblock extrahead %}
+#fooObject {
+ /* simple box */
+ position:absolute;
+ left:0px;
+ top:8em;
+ width:5em;
+ line-height:3em;
+ background:#99ccff;
+ border:1px solid #003366;
+ white-space:nowrap;
+ padding:0.5em;
+}
+
+
+</style>
+
+{% endblock extra_head %}
 
 
 {% block header %}
@@ -14,7 +31,7 @@
 <div class="row">
   <div class="col-12">
     {% if pages|length > 0 %}
-    <p>
+    <p id="public">
       {% for page in pages %}
         {% if not "/" in page.slug %}
           {% if "root" in page.slug %}
@@ -33,37 +50,61 @@
         {% endif %}
       {% endfor %}
     </p>
-    <br>
     {% endif %}
-    {% if request.user.is_authenticated %}
-    <h3>/ {{ request.user.name }} / <a href="/p/new" class="btn btn-outline-success badge">+ project</a></h3>
-    {% endif %}
+
+
+
   </div>
 </div>
 <!-- end row -->
 {% endblock header %}
 
 {% block content %}
-  <div class="col-9">
+  <div class="col-12">
     {% if request.user.is_authenticated %}
-      <span style="padding-bottom: 20px;font-size: large;">
+
+   
+    <h3>/ {{ request.user.name }} / <a href="/p/new" class="btn btn-outline-success badge">+ project</a></h3>
+   <hr>
+
       
-      <div class="list-group">
+      
         {% for project in projects %}
           {% if project.creator = request.user %}
-            <a class="list-group-item list-group-item-action" href="{{ project.slug }}"> {{ project.title }} :: /{{ project.slug }}</a>
+          <div class="card">
+            <div class="card-body">
+              
+                <a class="btn btn-light btn-sm" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>:: /{{ project.slug }}</small></h4></a>
+
+            </div>
+            <div class="card-footer" style="padding-bottom: 0rem;">
+              <div class="row  justify-content-between">
+                <div class="col-8">
+                  <small>{{ project.last_updated }}</small>
+                </div>
+                <div class="col-4">
+                  <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom: 20px;">
+                    <a type="button" class="btn btn-outline-danger" href="{{ project.get_absolute_url }}">See in docs</a>
+                    <a type="button" class="btn btn-outline-success" href="{{ project.get_absolute_url }}/edit">edit</a>
+                    <a type="button" class="btn btn-outline-info" href="{{ project.get_absolute_url }}/history/">history</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
           {% endif %}
         {% endfor %}
-      </div>
-      </span>
+      
+      
       {% else %}
       <span style="font-size: large;">
       <h1 class="display-5">Hi, {% if request.user.is_authenticated %}{{ request.user.name }}{% else %}anonymous user{% endif %}.</h1>
-      <p>There are currently {{ pages|length }} public, and {{ projects.count }} private page{{ projects|pluralize }}. <br>
-      Harvested by {{ users.count }} worker{{ users|pluralize }}.</p>
-      <p>If you don't know where to start, you can read about the project itself; keyword <span style='color:red;'>ants</span>. To understand how we work together, you can jump to the <span style='color:green;'>root</span>.</p>
+      <p>There are currently {{ pages|length }} public page{{ pages|pluralize }}. <br>
+      <!-- Harvested by {{ users.count }} worker{{ users|pluralize }}. --></p>
+      <p>If you don't know where to start, you can jump to the <span style='color:green;'>root</span>, or you can read about the project itself; namely <span style='color:red;'>ants</span>.</p>
 
-      <p>If you were invited to this platform and have received a key, you can enter that key directly into the hit box on the right.</p>
+      <p><!-- If you were invited to this platform and have received a key, you can enter that key directly into the hit box on the right. --></p>
       </span>
       {% endif %}
   </div>
@@ -72,3 +113,26 @@
 {% block footer %}
 {% endblock %}
 
+{% block extra_script %}
+<script type="text/javascript">
+  
+
+// var foo = null; // object
+
+// function doMove() {
+//   foo.style.left = parseInt(foo.style.left)+1+'px';
+//   setTimeout(doMove,20); // call doMove in 20msec
+// }
+
+// function init() {
+//   foo = document.getElementById('fooObject'); // get the "foo" object
+//   foo.style.left = '0px'; // set its initial position to 0px
+//   doMove(); // start animating
+// }
+
+
+// window.onload = init;
+
+
+</script>
+{% endblock %}

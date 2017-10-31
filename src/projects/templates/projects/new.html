@@ -13,16 +13,16 @@
 
 
 {% block content %}
-<form id="new-form" method="post" class="form" action="{% url 'projects:new_project' %}">
-	{% csrf_token %}
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">New project</h4>
-      </div>
-      <div class="modal-body">
-      	{{ form }}
-      </div>
-      <div class="modal-footer">
-       <input class="btn btn-success" value="Create page" type="submit">
-      </div>
-</form>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">New project</h4>
+    <form id="new-form" method="post" class="form" action="{% url 'projects:new_project' %}">
+      {% csrf_token %}
+      {{ form }}
+    </form>
+  </div>
+  <div class="card-footer text-right">
+   <input class="btn btn-success" value="Create page" type="submit">
+  </div>
+</div>
 {% endblock content %}
