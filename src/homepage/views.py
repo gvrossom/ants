@@ -113,10 +113,10 @@ def detail_page(request, slug):
             user = User.objects.get(name=slug.split('/')[0])
         except ObjectDoesNotExist:
             raise Http404('User unknown.')
-        if not user == request.user:
-            raise Http404('Unknown user')
+        if  request.user.is_superuser or user == request.user:
+            page = get_object_or_404(Page, slug=slug)  
         else:
-            page = get_object_or_404(Page, slug=slug)
+            raise Http404('Unknown user')
         if page.markup == "Markdown":
             md = Markdown(extensions=['markdown.extensions.toc'])
             html = md.convert(page.raw)
