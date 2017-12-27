@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404, get_list_or_404, Http404
 from django.template import RequestContext
 from django.views.decorators.http import require_http_methods
@@ -41,7 +42,9 @@ def home_page(request):
 
     # users = User.objects.all()
     if request.user.is_authenticated():
-        projects = Project.objects.filter(creator=request.user).order_by('-last_updated')
+        #Project.objects.filter(Q(creator=g)|Q(reviewers=g))
+
+        projects = Project.objects.filter( Q(creator=request.user) | Q(reviewers=request.user) ).order_by('-last_updated')
     else:
         projects = None
 

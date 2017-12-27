@@ -25,3 +25,8 @@ class NewProjectForm(forms.ModelForm):
     #     if Page.objects.filter(slug=slug).exists():
     #         raise forms.ValidationError(_("There is already a page with this slug"))
     #    return title
+
+
+class ReviewerForm(forms.Form):
+    user_name = forms.CharField(label='User name', max_length=100)
+    can_edit = forms.BooleanField(required=False)

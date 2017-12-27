@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<!-- Header -->
+<div class="row">
+  <div class="col">
+    <h1 class="display-5"><a class="btn btn-outline-success badge" href="/">Home</a>
+    / {{ request.user.name }} / _add reviewer to {{ slug }}</h1>
+    
+  </div>
+</div>
+{% endblock header %} 
+
+
+{% block content %}
+<div class="card">
+    <form id="reviewer" method="post" class="form" action="/p/{{ slug }}/_allow/">
+      {% csrf_token %}
+  <div class="card-body">
+    <h4 class="card-title">+</h4>
+      {{ form }}
+  </div>
+  <div class="card-footer text-right">
+   <input class="btn btn-success" value="Add" type="submit">
+  </div>
+    </form>
+</div>
+{% endblock content %}
