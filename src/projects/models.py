@@ -25,6 +25,7 @@ class Project(Page):
     reviewers = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="reviewers")
+    made_public = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
 
     # TODO
 
