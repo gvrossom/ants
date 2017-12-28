@@ -20,6 +20,10 @@
  padding:0.5em;
 }
 
+.btn-outline-dark {
+  border-color: transparent;
+}
+
 
 </style>
 
@@ -70,35 +74,44 @@
       
       
         {% for project in projects %}
-          
           <div class="card">
             <div class="card-body">
               <div class="row">
                 <div class="col-8">
-                  <a class="btn btn-light btn-sm" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>:: /{{ project.slug }}</small></h4></a>
+                  <a class="btn btn-outline-dark btn-lg" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>:: /{{ project.slug }}</small></h4></a>
                   {% if not request.user == project.creator %}
                   <span class="badge badge-default">Reviewing</span>
                   {% endif %}
                 </div>
                 <div class="col-4">
-                  <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom: 20px;">
+                  <div class="btn-group" role="group" aria-label="Doc links" style="padding-bottom: 20px;">
                     <a type="button" class="btn btn-outline-danger" href="{{ project.get_absolute_url }}">See in docs</a>
                     <a type="button" class="btn btn-outline-success" href="{{ project.get_absolute_url }}/edit">edit</a>
                     <a type="button" class="btn btn-outline-info" href="{{ project.get_absolute_url }}/history/">history</a>
                   </div>
-                  {% if request.user == project.creator %}
-                  <form action="/p/{{ project.slug }}/_allow/" method="post">
-                      {% csrf_token %}
-                      <label for="user_name">User name: </label>
-                      <input id="user_name" type="text" name="user_name" value="">
-                      <div class="form-check">
-                      <label class="form-check-label">
-                        <input id="can_edit" type="checkbox" name="can_edit" class="form-check-input">
-                        Can write.
-                      </label>
+                  {% if request.user.is_staff %}
+                  <p>
+                    <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseReviewers{{ project.id }}" aria-expanded="false" aria-controls="collapseReviewers{{ project.id }}">
+                      + Reviewer
+                    </button>
+                  </p>
+                  <div class="collapse" id="collapseReviewers{{ project.id }}">
+                    <div class="card card-body">
+                      <form action="/p/{{ project.slug }}/_allow/" method="post">
+                        {% csrf_token %}
+                        <label for="user_name">User name: </label>
+                        <input id="user_name" type="text" name="user_name" value="">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input id="can_edit" type="checkbox" name="can_edit" class="form-check-input">
+                            Can write.
+                          </label>
+                        </div>
+                        <input type="submit" value="OK">
+                      </form>
                     </div>
-                      <input type="submit" value="OK">
-                  </form>
+                  </div>
+                </span>
                   {% endif %}
                 </div>
               </div>
@@ -107,7 +120,7 @@
               <div class="row  justify-content-between">
                 <div class="col-8">
                   <p><small>Author: {{ project.creator.name }}</small>
-                  {% if project.reviewers.all %}<br><small>Reviewers: {% for reviewer in project.reviewers.all %}{{ reviewer.name }}{% endfor %}</small>{% endif %}</p>
+                  {% if project.reviewers.all %}<br><small>Reviewers: {% for reviewer in project.reviewers.all %}{{ reviewer.name }} {% endfor %}</small>{% endif %}</p>
                 </div>
                 <div class="col-4">
                   <small>{{ project.last_updated }}</small>

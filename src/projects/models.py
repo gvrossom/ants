@@ -26,6 +26,10 @@ class Project(Page):
         settings.AUTH_USER_MODEL,
         related_name="reviewers")
 
+    # TODO
+
+    # [] check for existing reviewer and permissions
+    # [] remove aclrule when removing reviewer
     
 
     def save(self, *args, **kwargs):
