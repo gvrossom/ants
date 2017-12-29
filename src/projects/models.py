@@ -31,6 +31,11 @@ class Project(Page):
 
     # [] check for existing reviewer and permissions
     # [] remove aclrule when removing reviewer
+
+    def is_public(self):
+        if self.made_public is None:
+            return False
+        return True
     
 
     def save(self, *args, **kwargs):

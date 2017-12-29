@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Permission
@@ -128,3 +130,30 @@ TO DO
 [] Reviewer delete aclrule view (read and/or write permissions)
 
 """
+
+@login_required
+def make_public(request, slug):
+    """
+
+    Get name to create view aclrule with or without edit/change/write permission
+
+    Only staff users can currently add reviewers.
+
+    TODO:
+
+    [x] make sure author doesn't insert himself.
+    [] gently fail
+
+    """
+    # get related project
+    p = get_object_or_404(Project, slug=slug)
+
+    if not p.made_public:
+        if request.user == p.creator:
+            p.made_public = datetime.now()
+            p.save()
+            return HttpResponseRedirect('/')
+    else:
+        messages.add_message(request, messages.WARNING, 'Project is already public.')
+        return HttpResponseRedirect('/')
+

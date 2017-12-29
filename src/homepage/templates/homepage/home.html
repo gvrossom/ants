@@ -24,6 +24,14 @@
   border-color: transparent;
 }
 
+.badge {
+  border-radius: 1px;
+}
+
+.btn-white {
+  color: #343a40;
+  border-color: white;
+}
 
 </style>
 
@@ -34,27 +42,16 @@
 <!-- Row -->
 <div class="row">
   <div class="col-12">
-    {% if pages|length > 0 %}
-    <p id="public">
-      {% for page in pages %}
-        {% if not "/" in page.slug %}
-          {% if "root" in page.slug %}
-            <a href="{{ page.slug }}" class="btn btn-success">{{ page.slug }}</a>
-          {% else %}
-            {% if "ants" in page.slug %}
-            <a href="{{ page.slug }}" class="btn btn-danger">{{ page.slug }}</a>
-            {% else %}
-              {% if "computer" in page.slug %}
-              <a href="{{ page.slug }}" class="btn btn-warning">{{ page.slug }}</a>
-              {% else %}
-              <a href="{{ page.slug }}" class="btn btn-info">{{ page.slug }}</a>
-              {% endif %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </p>
-    {% endif %}
+
+  <span style="font-size: large;">
+      <h1 class="display-5">Hi, {% if request.user.is_authenticated %}{{ request.user.name }}{% else %}anonymous user{% endif %}.</h1>
+      {% if request.user.is_anonymous %}
+      <p>There are currently {{ pages|length }} public page{{ pages|pluralize }}.</p>
+      {% endif %}
+<!--       <p>If you don't know where to start, you can jump to the <span style='color:green;'>root</span>, or you can read about the project itself; namely <span style='color:red;'>ants</span>.</p>
+ -->
+     <!-- <p> If you were invited to this platform and have received a key, you can enter that key directly into the hit box on the right. </p>-->
+      </span> 
 
 
 
@@ -65,36 +62,67 @@
 
 {% block content %}
   <div class="col-12">
+
+
+    
+
+
     {% if request.user.is_authenticated %}
 
    
-    <h3>/ {{ request.user.name }} / <a href="/p/new" class="btn btn-outline-success badge">+ project</a></h3>
+    <h3>/ {{ request.user.name }} / <a href="/p/new" class="btn btn-outline-danger btn-sm">+ page</a></h3>
    <hr>
-
       
       
         {% for project in projects %}
           <div class="card">
+            
             <div class="card-body">
               <div class="row">
-                <div class="col-8">
-                  <a class="btn btn-outline-dark btn-lg" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>:: /{{ project.slug }}</small></h4></a>
-                  {% if not request.user == project.creator %}
-                  <span class="badge badge-default">Reviewing</span>
-                  {% endif %}
+                <div class="col-md-7 col-sm-12">
+                  <a class="btn btn-outline-dark btn-lg" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }}</h4></a>
+                    {% if project in pages %}
+                    <span class="badge badge-info">Public</span>
+                    {% endif %}
+                    {% if not request.user == project.creator %}
+                    <span class="badge badge-dark">Reviewing</span>
+                    {% endif %}
+                  <p><small>/{{ project.slug }} :: {{ project.last_updated }}</small></p>
+                  
+      
+
+                    <p><small>Author: {{ project.creator.name }}</small>
+                    {% if project.reviewers.all %}<br><small>Reviewers: {% for reviewer in project.reviewers.all %}{{ reviewer.name }} {% endfor %}</small>{% endif %}</p>
+                    
                 </div>
-                <div class="col-4">
-                  <div class="btn-group" role="group" aria-label="Doc links" style="padding-bottom: 20px;">
-                    <a type="button" class="btn btn-outline-danger" href="{{ project.get_absolute_url }}">See in docs</a>
+                <div class="col-md-5 col-sm-12">
+                  <span class="float-right">
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
                     <a type="button" class="btn btn-outline-success" href="{{ project.get_absolute_url }}/edit">edit</a>
                     <a type="button" class="btn btn-outline-info" href="{{ project.get_absolute_url }}/history/">history</a>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                      
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Third group">
+                      
+                      {% if request.user = project.creator and project not in pages %}
+                        <a type="button" class="btn btn-outline-danger" href="/p/{{ project.slug }}/_mkpublic/">Make public</a>
+                      {% endif %}
+                      
+                    </div>
                   </div>
+                  </span>
+
+                  
                   {% if request.user.is_staff %}
-                  <p>
-                    <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseReviewers{{ project.id }}" aria-expanded="false" aria-controls="collapseReviewers{{ project.id }}">
-                      + Reviewer
-                    </button>
-                  </p>
+                        <a class="btn btn-outline-warning" data-toggle="collapse" href="#collapseReviewers{{ project.id }}" aria-expanded="false" aria-controls="collapseReviewers{{ project.id }}">
+                          + Reviewer
+                        </a>
+                      {% endif %}
+
+                  {% if request.user.is_staff %}
                   <div class="collapse" id="collapseReviewers{{ project.id }}">
                     <div class="card card-body">
                       <form action="/p/{{ project.slug }}/_allow/" method="post">
@@ -111,19 +139,9 @@
                       </form>
                     </div>
                   </div>
-                </span>
                   {% endif %}
-                </div>
-              </div>
-            </div>
-            <div class="card-footer" style="padding-bottom: 0rem;">
-              <div class="row  justify-content-between">
-                <div class="col-8">
-                  <p><small>Author: {{ project.creator.name }}</small>
-                  {% if project.reviewers.all %}<br><small>Reviewers: {% for reviewer in project.reviewers.all %}{{ reviewer.name }} {% endfor %}</small>{% endif %}</p>
-                </div>
-                <div class="col-4">
-                  <small>{{ project.last_updated }}</small>
+
+
                 </div>
               </div>
             </div>
@@ -133,14 +151,20 @@
       
       
       {% else %}
-      <span style="font-size: large;">
-      <h1 class="display-5">Hi, {% if request.user.is_authenticated %}{{ request.user.name }}{% else %}anonymous user{% endif %}.</h1>
-      <p>There are currently {{ pages|length }} public page{{ pages|pluralize }}. <br>
-      <!-- Harvested by {{ users.count }} worker{{ users|pluralize }}. --></p>
-      <p>If you don't know where to start, you can jump to the <span style='color:green;'>root</span>, or you can read about the project itself; namely <span style='color:red;'>ants</span>.</p>
 
-      <p><!-- If you were invited to this platform and have received a key, you can enter that key directly into the hit box on the right. --></p>
-      </span>
+        {% for project in pages %}
+              {% if 'root' in project.title %}
+                 <a class="btn btn-outline-success btn-white btn-lg" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>{{ project.last_updated }}</small></h4></a> 
+              {% else %}
+                {% if 'ant' in project.title %}
+                  <a class="btn btn-outline-danger btn-white btn-lg" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>{{ project.last_updated }}</small></h4></a>
+                {% else %}
+                  <a class="btn btn-outline-info btn-white btn-white btn-lg" href="{{ project.slug }}"><h4 class="card-title">{{ project.title }} <small>{{ project.last_updated }}</small></h4></a>              
+                {% endif %}           
+              {% endif %}
+        
+        {% endfor %}
+
       {% endif %}
   </div>
 {% endblock content %}

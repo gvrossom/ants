@@ -37,14 +37,16 @@ def home_page(request):
 
     pattern = "^[a-z]+$"
     # private_patern = r"([a-fA-F\d]{32})"
-    pages = Page.objects.all()
-    public = [page for page in pages if re.match(pattern, page.slug)]
+    pages = Project.objects.all()
+    # public = [page for page in pages if re.match(pattern, page.slug)]
+    public = [page for page in pages if page.is_public()]
 
     # users = User.objects.all()
     if request.user.is_authenticated():
         #Project.objects.filter(Q(creator=g)|Q(reviewers=g))
 
-        projects = Project.objects.filter( Q(creator=request.user) | Q(reviewers=request.user) ).order_by('-last_updated')
+        projects = Project.objects.filter( Q(creator=request.user) | Q(reviewers=request.user) ).order_by('-last_updated').distinct()
+        
     else:
         projects = None
 
@@ -109,31 +111,20 @@ def detail_page(request, slug):
     #     if is_number(word):
     #         part_of_many = True
     #         current_position = int(word)
-    pattern = "^[a-z]+$"
+    # pattern = "^[a-z]+$"
 
-    if not re.match(pattern, slug):
-        try:
-            user = User.objects.get(name=slug.split('/')[0])
-        except ObjectDoesNotExist:
-            raise Http404('User unknown.')
-        if  request.user.is_superuser or user == request.user:
-            page = get_object_or_404(Page, slug=slug)  
-        else:
-            raise Http404('Unknown user')
-        if page.markup == "Markdown":
-            md = Markdown(extensions=['markdown.extensions.toc'])
-            html = md.convert(page.raw)
-            toc = md.toc
-        else:
-            toc = None
+    # if not re.match(pattern, slug):
+    p = get_object_or_404(Project, slug=slug)
+    if not p.is_public():
+        if request.user != p.creator and request.user not in p.reviewers.all():
+            raise Http404('User unknown.') 
+    if p.markup == "Markdown":
+        md = Markdown(extensions=['markdown.extensions.toc'])
+        html = md.convert(p.raw)
+        toc = md.toc
     else:
-        page = get_object_or_404(Page, slug=slug)
-        if page.markup == "Markdown":
-            md = Markdown(extensions=['markdown.extensions.toc'])
-            html = md.convert(page.raw)
-            toc = md.toc
-        else:
-            toc = None
+        toc = None
+
 
     # sub_data = Page.objects.filter( slug__contains= slug).order_by("title")
     # one_level_up = []
@@ -173,7 +164,7 @@ def detail_page(request, slug):
 
     context = {
         'slug': slug,
-        'page': page,
+        'page': p,
         'toc': toc,
         # 'data': same_level_data,
         # 'sub_data': one_level_up,

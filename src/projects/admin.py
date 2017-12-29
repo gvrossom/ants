@@ -5,7 +5,7 @@ from .models import Project
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = [
-        'page_ptr',
+        'title',
         'creator',
     ]
 

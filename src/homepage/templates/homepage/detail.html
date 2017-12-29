@@ -4,13 +4,42 @@
 
 {% block title %}{{ block.super }}Seed{% endblock %}
 
+{% block navbar-right %}
+  {% if request.user.is_authenticated %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Me</a>
+    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdown01">
+      {% if request.user.is_staff %}
+      <a class="dropdown-item" href="{% url 'profiles:show_self' %}">me</a>
+      <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+      {% endif %}
+      <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+    </div>
+  </li>
+  {% else %}
+    <li>
+      <a class="nav-link" href="{% url 'accounts:login' %}?next=/{{ page.slug }}">Login</a>
+    </li>
+  {% endif %}
+{% endblock %}
+
 {% block header %}
 <!-- Header -->
 <div class="row">
   <div class="col">
     <h1 class="display-5">{{ page.title }}</h1>
-    <a class="btn btn-outline-success badge" href="/">Home</a>
+    <a class="btn btn-outline-danger badge" href="/">Home</a>
     / {{ page.slug }}
+
+    {% if request.user.is_authenticated %}
+    <span class="float-right">
+      <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom: 20px;">
+        <a type="button" class="btn btn-outline-success" href="{{ page.get_absolute_url }}/edit">edit</a>
+        <!-- <a type="button" class="btn btn-outline-warning" href="{{ page.get_absolute_url }}">See in docs</a> -->
+        <a type="button" class="btn btn-outline-info" href="{{ page.get_absolute_url }}/history/">history</a>
+      </div>
+    </span>
+      {% endif %}
   </div>
 </div>
 {% endblock header %}
@@ -22,15 +51,8 @@
 <div class="col-4 hidden-sm hidden-xs">
     <div data-spy="affix" data-offset-top="50">
 
-        {% if request.user.is_authenticated %}
-        <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom: 20px;">
-          <a type="button" class="btn btn-outline-success" href="{{ page.get_absolute_url }}/edit">edit</a>
-          <a type="button" class="btn btn-outline-warning" href="{{ page.get_absolute_url }}">See in docs</a>
-          <a type="button" class="btn btn-outline-info" href="{{ page.get_absolute_url }}/history/">history</a>
-        </div>
-        {% endif %}
-        {% if toc %}
-        <h3 class="display-5">On this page:</h3>
+        
+        {% if toc  %}
         {{ toc|safe }}
         {% endif %}
     </div>
