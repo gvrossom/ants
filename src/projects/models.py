@@ -27,11 +27,6 @@ class Project(Page):
         related_name="reviewers")
     made_public = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
 
-    # TODO
-
-    # [] check for existing reviewer and permissions
-    # [] remove aclrule when removing reviewer
-
     def is_public(self):
         if self.made_public is None:
             return False
